@@ -1,4 +1,4 @@
-part = "c"; // c: case, l: lid
+part = "l2"; // c: case, l: lid, l2: thicker lid
 
 // PCB size
 pcbx = 47.5;
@@ -93,7 +93,27 @@ if (part == "c") {
     translate([wall + sidex + pcbo / 2 + usbx, ty - wall - zf, usbzl])
       cube([usbsx, wall + 2 * zf, tz]);
   }
-} else if (part == "l") {
+} else if (part == "l2") {
+  difference() {
+    union() {
+      rcube(tx, ty, fl, caser);  
+      translate([wall + pl / 2, wall + pl / 2, 0])
+        rcube(tx - 2 * wall - pl, ty - 2 * wall - pl, 2*fl, caser - wall - pl / 2);
+      translate([tx - (wall + sidex + pcbo / 2 + usbx) - usbsx + pl / 2, ty - usbsy, 0])
+        cube([usbsx - pl, usbsy, fl+tz - usbzl - usbsz]);
+    }
+    translate([wall + nutod / 2, wall + nutod / 2, -zf])
+      cylinder(d=scd, h=2 * fl + 2 * zf);
+    translate([tx - (wall + nutod / 2), wall + nutod / 2, -zf])
+      cylinder(d=scd, h=2 * fl + 2 * zf);
+    translate([wall + nutod / 2, ty - (wall + nutod / 2), -zf])
+      cylinder(d=scd, h=2 * fl + 2 * zf);
+    translate([tx - (wall + nutod / 2), ty - (wall + nutod / 2), -zf])
+      cylinder(d=scd, h=2 * fl + 2 * zf);
+    translate([tx - (wall + sidex + pcbo / 2 + hox) - hsx, wall + pcbo / 2 + hoy, -zf])
+      cube([hsx, hsy, 2 * fl + 2 * zf]);
+  }
+}  else if (part == "l") {
   difference() {
     union() {
       translate([wall + pl / 2, wall + pl / 2, 0])
@@ -113,3 +133,4 @@ if (part == "c") {
       cube([hsx, hsy, fl + 2 * zf]);
   }
 }
+
