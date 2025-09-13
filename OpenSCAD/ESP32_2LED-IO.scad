@@ -19,11 +19,11 @@ nuth = 5;
 nutod = nutd + 2 * wall;
 
 // total case size
+sidex = nutod;
 tx = px + 2 * sidex + 2 * wall;
 ty = py + 2 * wall;
 tz = 15;
 caser = 4;
-sidex = nutod;
 
 // standoff
 sox = 3;
